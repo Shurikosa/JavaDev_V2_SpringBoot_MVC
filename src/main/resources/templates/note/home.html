@@ -39,9 +39,6 @@
         </form>
     </div>
 </div>
-<!--<div th:text="${noteList.size()}">
-
-</div>-->
 <div class="container">
     <div th:if="${noteList.size() != 0}">
         <h1>List of Notes</h1>
@@ -58,10 +55,10 @@
                 <td th:text="${note.title}">Title</td>
                 <td th:text="${note.content}">Content</td>
                 <td>
-                    <a class="btn btn-primary ms-auto" th:href="@{/note/edit_note/{id}(id=${note.id})}">Edit ✏️ </a>
+                    <a class="btn btn-outline-success ms-auto" th:href="@{/note/edit_note/{id}(id=${note.id})}">Edit ✏️ </a>
                     <form th:action="@{/note/delete}" method="post" class="d-inline">
                         <input type="hidden" name="id" th:value="${note.getId()}"/>
-                        <button type="submit" class="btn btn-primary ms-auto">Remove 🗑️</button>
+                        <button type="submit" class="btn btn-outline-success ms-auto">Remove 🗑️</button>
                     </form>
                 </td>
             </tr>
