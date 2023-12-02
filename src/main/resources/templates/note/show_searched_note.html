@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+    <div th:if="${result.size() != 0}">
+        <h1>List of Notes</h1>
+        <table  class="table table-bordered mt-3">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="note : ${result}">
+                <td th:text="${note.title}">Title</td>
+                <td th:text="${note.content}">Content</td>
+                <td>
+                    <a class="btn btn-primary ms-auto" th:href="@{/note/edit_note/{id}(id=${note.id})}">Edit ✏️ </a>
+                    <form th:action="@{/note/delete}" method="post" class="d-inline">
+                        <input type="hidden" name="id" th:value="${note.getId()}"/>
+                        <button type="submit" class="btn btn-primary ms-auto">Remove 🗑️</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${#lists.isEmpty(result)}">
+        <p>No notes available</p>
+    </div>
+</div>
+</body>
+</html>
