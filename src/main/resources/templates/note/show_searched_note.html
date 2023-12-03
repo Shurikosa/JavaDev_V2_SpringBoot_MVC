@@ -27,7 +27,9 @@
                 <td th:text="${note.title}">Title</td>
                 <td th:text="${note.content}">Content</td>
                 <td>
-                    <button type="submit" class="btn btn-outline-success ms-auto" th:href="@{/note/edit_note/{id}(id=${note.id})}">Edit ✏️</button>
+                    <form th:action="@{/note/edit_note/{id}(id=${note.id})}" method="get" class="d-inline">
+                        <button type="submit" class="btn btn-outline-success ms-auto" >Edit ✏️</button>
+                    </form>
                     <form th:action="@{/note/delete}" method="post" class="d-inline">
                         <input type="hidden" name="id" th:value="${note.getId()}"/>
                         <button type="submit" class="btn btn-outline-success ms-auto">Remove 🗑️</button>
