@@ -1,0 +1,5 @@
+CREATE TABLE notes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(200),
+    content VARCHAR(2000)
+);
