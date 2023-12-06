@@ -27,12 +27,10 @@ public class NoteController {
     @PostMapping("/home")
     public String saveNote(@RequestParam(name = "title", required = false) String title,
                            @RequestParam(name = "content", required = false) String content){
-        System.out.println(title + " " + content + noteService.listAll().size());
         Note note = new Note();
         note.setTitle(title);
         note.setContent(content);
         noteService.add(note);
-        System.out.println(note.getId());
         return REDIRECT;
     }
 
@@ -51,7 +49,6 @@ public class NoteController {
 
     @PostMapping("/delete")
     public String deleteNote(@RequestParam(name = "id") Long id){
-        System.out.println(id);
         noteService.deletedById(id);
         return REDIRECT;
     }
