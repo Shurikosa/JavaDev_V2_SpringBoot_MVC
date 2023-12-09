@@ -3,6 +3,8 @@ package go.it.oleksandr.controller;
 import go.it.oleksandr.entities.Note;
 import go.it.oleksandr.services.NoteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +22,11 @@ public class NoteController {
 
     @GetMapping("/home")
     public ModelAndView getAllNotes(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
         ModelAndView result = new ModelAndView("note/home");
         result.addObject("noteList", noteService.listAll());
+        result.addObject("username", username);
         return result;
     }
     @PostMapping("/home")
